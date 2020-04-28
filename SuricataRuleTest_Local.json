@@ -1,0 +1,49 @@
+{
+  "name": "SuricataRuleTest_Local",
+  "version": "0.7",
+  "author": "Sandor Tokesi",
+  "url": "forensixchange.com",
+  "license": "AGPL-v3",
+  "description": "Test Suricata rules on the provided pcap (flavor: Suricata running on the same host as Cortex)",
+  "dataTypeList": [
+    "file"
+    ],
+  "command": "SuricataRuleTest/SuricataRuleTest.py",
+  "baseConfig": "SuricataRuleTest_Local",
+  "config": {
+	 "service" : "local" 
+  },
+  "configurationItems": [
+    {
+      "name": "suricata_config",
+      "description": "Path to the Suricata Yaml config file. Going to be used as the paremeter of the -c Suricata switch.",
+      "type": "string",
+      "multi": false,
+      "required": false
+    },
+    {
+      "name": "suricata_rule",
+      "description": "Path to the Suricata rule file. Going to be used as the parameter of the -S Suricata switch.",
+      "type": "string",
+      "multi": false,
+      "required": false
+    },
+    {
+
+      "name": "suricata_logfile",
+      "description": "Path to the Suricata logfile",
+      "type": "string",
+      "multi": false,
+      "required": true,
+      "defaultValue": "/var/log/suricata/fast.log"
+    },
+    {
+		"name": "reverse_taxonomy",
+		"description": "When true, finding a match will be marked as benign, otherwise the lack of match is marked as benign",
+		"type": "boolean",
+		"required": true,
+		"multi": false,
+		"defaultValue": false
+ 	}
+  ]
+}

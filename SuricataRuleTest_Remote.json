@@ -1,0 +1,98 @@
+{
+  "name": "SuricataRuleTest_Remote",
+  "version": "0.7",
+  "author": "Sandor Tokesi",
+  "url": "forensixchange.com",
+  "license": "AGPL-v3",
+  "description": "Test Suricata rules on the provided pcap (flavor: connecting to Suricata via SSH)",
+  "dataTypeList": [
+    "file"
+    ],
+  "command": "SuricataRuleTest/SuricataRuleTest.py",
+  "baseConfig": "SuricataRuleTest_Remote",
+  "config": {
+	 "service" : "remote" 
+  },
+  "configurationItems": [
+    {
+      "name": "suricata_config",
+      "description": "Path to the Suricata Yaml config file on the remote host (or in the docker instnace). Going to be used as the paremeter of the -c Suricata switch.",
+      "type": "string",
+      "multi": false,
+      "required": false
+    },
+    {
+      "name": "suricata_rule",
+      "description": "Path to the Suricata rule file on the remote host (or in the docker instnace). Going to be used as the parameter of the -S Suricata switch.",
+      "type": "string",
+      "multi": false,
+      "required": false
+    },
+    {
+
+      "name": "suricata_logfile",
+      "description": "Path to the Suricata logfile on the remote host (or in the docker instnace)",
+      "type": "string",
+      "multi": false,
+      "required": true,
+      "defaultValue": "/var/log/suricata/fast.log"
+    },
+    {
+
+      "name": "remote_host",
+      "description": "IP or hostname of the remote system.",
+      "type": "string",
+      "multi": false,
+      "required": true
+    },
+    {
+
+      "name": "remote_user",
+      "description": "Username to be used for SSH connection",
+      "type": "string",
+      "multi": false,
+      "required": true
+    },
+    {
+
+      "name": "remote_port",
+      "description": "Port to be used on the remote host. If not provided default ssh port is going to be used",
+      "type": "number",
+      "multi": false,
+      "required": false
+    },
+    {
+
+      "name": "remote_password",
+      "description": "Password of the provided user for SSH connection. (Going to be stored in plain text in the config file. This or the keyfile has to be provided)",
+      "type": "string",
+      "multi": false,
+      "required": false
+    },
+    {
+
+      "name": "remote_keyfile",
+      "description": "Keyfile location of the provided user for SSH connection (This or the password has to be provided)",
+      "type": "string",
+      "multi": false,
+      "required": false
+    },    
+    {
+
+      "name": "allow_unknown_host",
+      "description": "True: allow connection to the hosts not in the known_host file (can be a security issue). False: Only allows connection to the hosts from the system's known_host file.",
+      "type": "boolean",
+      "multi": false,
+      "required": false,
+      "defaultValue": true
+    },
+    {
+		"name": "reverse_taxonomy",
+		"description": "When true, finding a match will be marked as benign, otherwise the lack of match is marked as benign",
+		"type": "boolean",
+		"required": true,
+		"multi": false,
+		"defaultValue": false
+ 	}
+  ]
+}
